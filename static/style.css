@@ -1,0 +1,58 @@
+/* Общий стиль для BankOTP */
+body {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+}
+
+h1, h2, h3 {
+    color: #0d6efd;
+    font-weight: 600;
+}
+
+.btn-custom {
+    border-radius: 30px;
+    padding: 10px 25px;
+    font-size: 1.1rem;
+}
+
+.container {
+    max-width: 800px;
+}
+
+.card-custom {
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.navbar {
+    border-bottom: 2px solid #e3e3e3;
+}
+
+.footer {
+    margin-top: 60px;
+    padding: 20px 0;
+    background-color: #f1f1f1;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #777;
+}
+
+.alert {
+    background-color: #f8d7da;
+    color: #842029;
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 16px;
+    border: 1px solid #f5c2c7;
+}
+
+
+.animated-fade {
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}

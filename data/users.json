@@ -1,0 +1,42 @@
+{
+    "Kaldarbek2004": {
+        "password": "$2b$12$7A3f/bLN5rJCIGa2KyE0QuQr3rL93ucxHJ16PHbFgX2137w5cBAjm",
+        "otp_secret": "G72R2IC7IGILH3P4CJL4R7YOVCT7Q6IK",
+        "balance": 120340.0
+    },
+    "DimaNam": {
+        "password": "$2b$12$EJQLMybExTKQOZLNXBlC5e4S4jfDNKD4fmMGVA89CAibE.byTRoFC",
+        "otp_secret": "2S3IFITGAMF4ARSIGCZWJ7RRWB5MT24F",
+        "balance": 66010.0
+    },
+    "AdminNurik": {
+        "password": "795f22d1e257d9a8781157e7e4ee2bd669812fa894bd01d5fdac507906cd7c11",
+        "otp_secret": "74RE5VWE2TNKRV2TDOJGGC6LDYTJ3KM3",
+        "balance": 134000.0
+    },
+    "Nurmuhammed": {
+        "password": "97382f7251ea406673d6965a7687daf428b3bc1e23a66bc8b68ddcb7c8a46ecc",
+        "otp_secret": "DLWD4FP7QCJN7I57Y3OZ4JLNNUJGKDYF",
+        "balance": 105000.0
+    },
+    "Sultan": {
+        "password": "97382f7251ea406673d6965a7687daf428b3bc1e23a66bc8b68ddcb7c8a46ecc",
+        "otp_secret": "I2JT7RDTAXJESKU7C2KAJLOYRQIWAQCQ",
+        "balance": 40500.0
+    },
+    "Sanya": {
+        "password": "$2b$12$nlb9MhkWs4aWm.s14GNA1uZFGb6ZVRTx0QweQM8qE7JsA2bGWqZWe",
+        "otp_secret": "SEFXVYVIPV3KBICGRFLF5GZAUNNJ3P5Z",
+        "balance": 64300.0
+    },
+    "Gena": {
+        "password": "97382f7251ea406673d6965a7687daf428b3bc1e23a66bc8b68ddcb7c8a46ecc",
+        "otp_secret": "DMVNIJWBTURTMTNLZLPCJVWVOKLO2VHM",
+        "balance": 49850.0
+    },
+    "Alisher": {
+        "password": "97382f7251ea406673d6965a7687daf428b3bc1e23a66bc8b68ddcb7c8a46ecc",
+        "otp_secret": "DWQBYC5AOXNVG57TCGXQVOJBD576CA46",
+        "balance": 40000.0
+    }
+}

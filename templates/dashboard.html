@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Личный кабинет</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body class="bg-light">
+<div class="container py-5">
+    <div class="card shadow p-4">
+        <h2 class="mb-4 text-primary">Добро пожаловать, {{ username }}!</h2>
+        <h4>Ваш баланс: <span class="text-success">{{ balance }}₸</span></h4>
+
+        {% if error %}
+        <div class="alert alert-danger mt-3">{{ error }}</div>
+        {% endif %}
+
+        <hr>
+        <h5 class="mb-3">Перевести средства</h5>
+        <form id="transferForm">
+            <div class="mb-3">
+                <label for="recipient" class="form-label">Получатель</label>
+                <input type="text" class="form-control" id="recipient" name="recipient" required>
+            </div>
+            <div class="mb-3">
+                <label for="amount" class="form-label">Сумма</label>
+                <input type="number" class="form-control" id="amount" name="amount" min="1" step="any" required>
+            </div>
+            <button type="submit" class="btn btn-success w-100">Отправить</button>
+        </form>
+
+        <div class="text-center mt-4">
+            <a href="/transactions" class="btn btn-outline-primary">История транзакций</a>
+            <a href="/" class="btn btn-link">На главную</a>
+        </div>
+    </div>
+</div>
+
+<!-- Модальное окно подтверждения OTP -->
+<div class="modal fade" id="otpModal" tabindex="-1" aria-labelledby="otpModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <form method="post" action="/transfer">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="otpModalLabel">Подтверждение перевода</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+        </div>
+        <div class="modal-body">
+          <p>Введите OTP-код для подтверждения перевода:</p>
+          <input type="hidden" name="recipient" id="modalRecipient">
+          <input type="hidden" name="amount" id="modalAmount">
+          <input type="text" class="form-control" name="otp" placeholder="OTP-код" required>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+          <button type="submit" class="btn btn-primary">Подтвердить</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+    document.getElementById('transferForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        const recipient = document.getElementById('recipient').value;
+        const amount = document.getElementById('amount').value;
+        document.getElementById('modalRecipient').value = recipient;
+        document.getElementById('modalAmount').value = amount;
+        new bootstrap.Modal(document.getElementById('otpModal')).show();
+    });
+</script>
+</body>
+</html>

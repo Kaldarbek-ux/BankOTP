@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация успешна</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #f4f6f8;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .card {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 16px;
+            color: #2e7d32;
+        }
+
+        p {
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        img {
+            margin: 20px auto;
+            width: 200px;
+            height: 200px;
+        }
+
+        .otp-link {
+            font-size: 14px;
+            color: #888;
+            word-break: break-all;
+        }
+
+        a.button {
+            display: inline-block;
+            margin-top: 24px;
+            padding: 10px 20px;
+            background: #2e7d32;
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+
+        a.button:hover {
+            background: #27652b;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Регистрация успешна!</h1>
+        <p><strong>{{ username }}</strong>, отсканируйте QR-код в Google Authenticator:</p>
+        <img src="data:image/png;base64,{{ qr_code }}" alt="QR Code">
+        <p class="otp-link">{{ otp_uri }}</p>
+        <a class="button" href="/login">Перейти к входу</a>
+    </div>
+</body>
+</html>
