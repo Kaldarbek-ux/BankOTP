@@ -82,5 +82,35 @@
         "recipient": "Kaldarbek2004",
         "amount": 49850.0,
         "timestamp": "2025-04-21 14:49:19"
+    },
+    {
+        "sender": "AdminNurik",
+        "recipient": "DimaNam",
+        "amount": 3000.0,
+        "timestamp": "2025-04-24 15:10:26"
+    },
+    {
+        "sender": "AdminNurik",
+        "recipient": "DimaNam",
+        "amount": 390.0,
+        "timestamp": "2025-04-24 19:08:20"
+    },
+    {
+        "sender": "AdminNurik",
+        "recipient": "DimaNam",
+        "amount": 890.0,
+        "timestamp": "2025-04-24 21:41:27"
+    },
+    {
+        "sender": "AdminNurik",
+        "recipient": "Sultan",
+        "amount": 8880.0,
+        "timestamp": "2025-04-24 21:49:58"
+    },
+    {
+        "sender": "AdminNurik",
+        "recipient": "Sultan",
+        "amount": 53589.0,
+        "timestamp": "2025-04-25 00:37:49"
     }
 ]

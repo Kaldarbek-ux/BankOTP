@@ -44,6 +44,20 @@ def save_transactions(transactions):
     with open(TX_FILE, 'w') as f:
         json.dump(transactions, f, indent=4)
 
+# Загрузка отзывов
+def load_reviews():
+    if not os.path.exists("data/reviews.json"):
+        return []
+    with open("data/reviews.json", "r", encoding="utf-8") as f:
+        return json.load(f)
+
+# Сохранение отзывов
+def save_review(name, message):
+    reviews = load_reviews()
+    reviews.append({"name": name, "message": message})
+    with open("data/reviews.json", "w", encoding="utf-8") as f:
+        json.dump(reviews, f, ensure_ascii=False, indent=4)
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -91,6 +105,11 @@ def register():
         return render_template("register_success.html", username=username, qr_code=qr_code_base64, otp_uri=uri)
 
     return render_template('register.html')
+
+@app.route('/about')
+def about():
+    reviews = load_reviews()
+    return render_template('about.html', reviews=reviews)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -140,11 +159,32 @@ def verify_otp():
         otp = request.form['otp']
         if totp.verify(otp):
             session['authenticated'] = True
-            return redirect('/dashboard')
+            return redirect(url_for('account'))
         else:
             error = "Неверный OTP-код!"
 
     return render_template('verify_otp.html', error=error)
+
+@app.route('/submit_review', methods=['POST'])
+def submit_review():
+    name = request.form.get("name")
+    message = request.form.get("message")
+    if name and message:
+        save_review(name, message)
+    return redirect(url_for('about'))
+
+@app.route('/account')
+def account():
+    if 'username' not in session:
+        return redirect(url_for('login'))
+
+    username = session['username']
+    # Получаем баланс и другую инфу
+    with open('data/users.json', 'r') as f:
+        data = json.load(f)
+        balance = data.get(username, {}).get('balance', 0)
+
+    return render_template('account.html', username=username, balance=balance)
 
 @app.route('/dashboard')
 def dashboard():

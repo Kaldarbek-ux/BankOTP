@@ -1,0 +1,36 @@
+<!-- navbar.html -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center" href="/about">
+      <img src="{{ url_for('static', filename='images/BankOTP_icon.png') }}" alt="Bank Logo" width="40" class="me-2">
+      <span class="fw-bold text-primary fs-4">BankOTP</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav align-items-center">
+        <li class="nav-item me-3">
+          <a class="nav-link" href="/account">Кабинет</a>
+        </li>
+        <li class="nav-item me-3">
+          <a class="nav-link" href="/transactions">Транзакции</a>
+        </li>
+        <li class="nav-item me-4">
+          <a class="nav-link" href="/dashboard">Переводы</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown">
+            <img src="{{ url_for('static', filename='default_avatar.png') }}" alt="Avatar" width="32" height="32" class="rounded-circle me-2">
+            {{ username }}
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="/profile">Профиль</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item text-danger" href="/about">Выйти</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

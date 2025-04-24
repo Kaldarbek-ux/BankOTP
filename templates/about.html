@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>О BankOTP</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        .banner {
+            background: linear-gradient(to right, #0d6efd, #0b5ed7);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            border-radius: 20px;
+        }
+
+        .section {
+            padding: 60px 0;
+        }
+
+        .review-card {
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+    </style>
+</head>
+<body class="bg-light">
+
+    {% include 'navbar.html' %}
+
+    <div class="container mt-4">
+        <div class="banner" data-aos="fade-down">
+            <h1>Добро пожаловать в BankOTP</h1>
+            <p>Надёжность, безопасность и инновации в одном месте</p>
+        </div>
+
+        <div class="section" data-aos="fade-up">
+            <h2 class="text-center mb-4">💡 Что мы предлагаем?</h2>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="zoom-in">
+                    <div class="card p-3">
+                        <h5>🔐 Двухфакторная аутентификация</h5>
+                        <p>Максимальная безопасность ваших транзакций с помощью OTP-кодов.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="card p-3">
+                        <h5>💳 Мгновенные переводы</h5>
+                        <p>Отправляйте и получайте средства без задержек и скрытых комиссий.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="card p-3">
+                        <h5>📊 История операций</h5>
+                        <p>Полный контроль и прозрачность всех ваших финансовых действий.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section bg-white" data-aos="fade-up">
+            <h2 class="text-center mb-4">✨ Преимущества BankOTP</h2>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">✔ Интуитивно понятный интерфейс</li>
+                <li class="list-group-item">✔ Поддержка 24/7</li>
+                <li class="list-group-item">✔ Мобильная совместимость</li>
+                <li class="list-group-item">✔ Современные технологии защиты данных</li>
+            </ul>
+        </div>
+
+       <div class="section" data-aos="fade-up">
+    <h2 class="text-center mb-4">🗣 Отзывы пользователей</h2>
+    <div class="row g-3">
+        {% for review in reviews %}
+        <div class="col-md-6" data-aos="fade-up">
+            <div class="review-card bg-white">
+                <p><strong>{{ review.name }}:</strong> {{ review.message }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+        <div class="section bg-white" data-aos="fade-up">
+            <h3 class="text-center mb-3">Оставьте свой отзыв</h3>
+            <form method="post" action="/submit_review" class="mx-auto" style="max-width: 600px;">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Имя</label>
+                    <input type="text" name="name" class="form-control" id="name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="message" class="form-label">Отзыв</label>
+                    <textarea name="message" class="form-control" id="message" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Отправить</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true,
+            duration: 800
+        });
+    </script>
+</body>
+</html>

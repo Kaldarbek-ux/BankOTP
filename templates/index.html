@@ -3,17 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <title>BankOTP — Главная</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="bg-light">
-    <div class="container text-center mt-5">
-        <h1 class="display-4 mb-4">Добро пожаловать в <span class="text-primary">BankOTP</span></h1>
+        <section class="container mt-5">
+    <div class="text-center animate__animated animate__fadeInDown">
+        <h1 class="display-4">Добро пожаловать в <span class="text-primary">BankOTP</span></h1>
         <p class="lead">Безопасный доступ с двухфакторной аутентификацией</p>
-        <div class="mt-4">
-            <a href="/register" class="btn btn-success btn-lg me-3">Регистрация</a>
-            <a href="/login" class="btn btn-primary btn-lg">Вход</a>
-        </div>
+        <a href="/register" class="btn btn-success mx-2">Регистрация</a>
+        <a href="/login" class="btn btn-primary mx-2">Вход</a>
+    </div>
+
+    <div class="card p-4 mt-5 welcome-card animate__animated animate__fadeInUp">
+        <h2 class="text-center">Добро пожаловать в <strong>BankOTP</strong></h2>
+        <p class="text-center fs-5 mt-3">
+            <strong>BankOTP</strong> — это современный онлайн-банк с акцентом на безопасность и удобство.
+            Мы предлагаем надёжную систему двухфакторной аутентификации, переводы между пользователями,
+            историю транзакций и защиту с помощью reCAPTCHA.
+        </p>
+        <p class="text-center text-muted mt-2">Безопасность. Удобство. Доверие.</p>
+    </div>
+</section>
+
     </div>
 </body>
 </html>
