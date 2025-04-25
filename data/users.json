@@ -38,5 +38,10 @@
         "password": "97382f7251ea406673d6965a7687daf428b3bc1e23a66bc8b68ddcb7c8a46ecc",
         "otp_secret": "DWQBYC5AOXNVG57TCGXQVOJBD576CA46",
         "balance": 40000.0
+    },
+    "Tomas": {
+        "password": "97382f7251ea406673d6965a7687daf428b3bc1e23a66bc8b68ddcb7c8a46ecc",
+        "otp_secret": "35AVHMOVB3JGG3X22RUNQMR3WEP52JW4",
+        "balance": 100000
     }
 }
