@@ -1,5 +1,7 @@
-from cryptography.hazmat.primitives.asymmetric import rsa, padding
-from cryptography.hazmat.primitives import hashes, serialization
+from cryptography.hazmat.primitives import hashes
+from cryptography.hazmat.primitives.asymmetric import padding
+from cryptography.hazmat.primitives import serialization
+from cryptography.hazmat.primitives.asymmetric import rsa
 import os
 
 PRIVATE_KEY_FILE = "../keys/private_key.pem"
@@ -26,8 +28,8 @@ def generate_keys():
         ))
 
 # Загрузка ключей
-def load_private_key():
-    with open(PRIVATE_KEY_FILE, "rb") as f:
+def load_private_key(filename='keys/private_key.pem'):
+    with open(filename, 'rb') as f:
         return serialization.load_pem_private_key(f.read(), password=None)
 
 def load_public_key():
@@ -39,10 +41,13 @@ def sign_message(message):
     private_key = load_private_key()
     signature = private_key.sign(
         message.encode(),
-        padding.PSS(mgf=padding.MGF1(hashes.SHA256()), salt_length=padding.PSS.MAX_LENGTH),
+        padding.PSS(
+            mgf=padding.MGF1(hashes.SHA256()),
+            salt_length=padding.PSS.MAX_LENGTH
+        ),
         hashes.SHA256()
     )
-    return signature
+    return signature.hex()  # Сохраняем в hex-формате для удобства записи в БД
 
 # Проверка подписи
 def verify_signature(message, signature):
