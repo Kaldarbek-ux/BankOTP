@@ -5,6 +5,7 @@ import hashlib
 import qrcode
 import base64
 import os
+import re
 from datetime import datetime
 from io import BytesIO
 import requests
@@ -33,6 +34,15 @@ def save_users(users):
 
 def hash_password(password):
     return hashlib.sha256(password.encode()).hexdigest()
+
+def normalize_phone(phone):
+    """Удаляет все символы, кроме цифр и знака + в начале."""
+    phone = phone.strip()
+    # Оставляем только + и цифры
+    normalized = '+' + re.sub(r'\D', '', phone)
+    if not normalized.startswith('+'):
+        normalized = '+' + normalized.lstrip('+')
+    return normalized
 
 def load_transactions():
     if not os.path.exists(TX_FILE):
@@ -81,16 +91,25 @@ def register():
 
         users = load_users()
         username = request.form['username']
+        phone = request.form['phone'].strip()
         password = request.form['password']
+        confirm_password = request.form['confirm_password']
 
         if username in users:
             error = "Пользователь с таким именем уже существует!"
             return render_template('register.html', error=error)
+        if password != confirm_password:
+            error = 'Пароли не совпадают.'
+            return render_template('register.html', error=error)
+        for user_data in users.values():
+            if user_data.get('phone') == phone:
+                return render_template('register.html', error='Пользователь с таким номером телефона уже существует!')
 
         secret_key = pyotp.random_base32()
         users[username] = {
             'password': hash_password(password),
             'otp_secret': secret_key,
+            'phone': phone,
             'balance': 100000
         }
         save_users(users)
@@ -130,16 +149,31 @@ def login():
 
         # Проверка пользователя
         users = load_users()
-        username = request.form['username']
+        identifier = request.form['username'].strip()  # теперь это может быть username или телефон
         password = request.form['password']
 
-        user = users.get(username)
+        user = None
+
+        # Пробуем найти по username
+        if identifier in users:
+            user = users[identifier]
+            found_username = identifier
+        else:
+            # Пробуем найти по номеру телефона
+            normalized_identifier = normalize_phone(identifier)
+            for username, data in users.items():
+                if 'phone' in data and normalize_phone(data['phone']) == normalized_identifier:
+                    user = data
+                    found_username = username
+                    break
+
         if not user:
             error = "Пользователь не найден!"
         elif user['password'] != hash_password(password):
             error = "Неверный пароль!"
         else:
-            session['username'] = username
+            # Авторизация успешна
+            session['username'] = found_username
             return redirect('/verify-otp')
 
     return render_template('login.html', error=error)

@@ -27,7 +27,7 @@
     "Sanya": {
         "password": "$2b$12$nlb9MhkWs4aWm.s14GNA1uZFGb6ZVRTx0QweQM8qE7JsA2bGWqZWe",
         "otp_secret": "SEFXVYVIPV3KBICGRFLF5GZAUNNJ3P5Z",
-        "balance": 64300.0
+        "balance": 158800.0
     },
     "Gena": {
         "password": "97382f7251ea406673d6965a7687daf428b3bc1e23a66bc8b68ddcb7c8a46ecc",
@@ -42,6 +42,17 @@
     "Tomas": {
         "password": "97382f7251ea406673d6965a7687daf428b3bc1e23a66bc8b68ddcb7c8a46ecc",
         "otp_secret": "35AVHMOVB3JGG3X22RUNQMR3WEP52JW4",
+        "balance": 100000
+    },
+    "Ali": {
+        "password": "97382f7251ea406673d6965a7687daf428b3bc1e23a66bc8b68ddcb7c8a46ecc",
+        "otp_secret": "GA37BL2XG6X33L6TS67JES3G46ZXBWF6",
+        "balance": 5500.0
+    },
+    "Muhammet": {
+        "password": "97382f7251ea406673d6965a7687daf428b3bc1e23a66bc8b68ddcb7c8a46ecc",
+        "otp_secret": "WG4C6CPXEGWZFPNYGVP63M27SBIUB2HZ",
+        "phone": "+7 (705) 434-78-04",
         "balance": 100000
     }
 }
