@@ -1,40 +1,54 @@
 
-# 🏦 BankOTP — Electronic Payment System with Two-Factor Authentication
+# 🏦 BankOTP — Secure Electronic Payment System with Two-Factor Authentication
 
-**BankOTP** is a demo web application implementing a secure electronic payment system using passwords and one-time passwords (OTP) as part of a two-factor authentication (2FA) process. The project utilizes cryptography, Google reCAPTCHA, transaction logging, and OTP mechanisms.
+**BankOTP** — is a secure web application that simulates an electronic banking platform with a strong emphasis on cryptography and two-factor authentication (2FA). It ensures secure user interactions by integrating AES encryption, RSA digital signatures, bcrypt password hashing, and Google reCAPTCHA.
 
 ---
 
 ## ⚙️ Features
 
-- User registration and login
-- Login verification with OTP (two-factor authentication)
-- Google reCAPTCHA (v2) for spam/bot protection
-- View transaction history
-- Transfer funds between users
-- Secure password hashing and verification
-- Digital signatures support (RSA-based)
-- QR code generation for OTP scanning
-- Logging of all transaction operations
+- User registration and login with strong bcrypt password hashing
+- Two-factor authentication using OTP (TOTP-based)
+- Google reCAPTCHA (v2) integration to prevent bots and abuse
+- AES encryption for secure storage of OTP secrets in PostgreSQL
+- Digital signature generation and verification using RSA
+- Transaction system with history tracking and logging
+- PostgreSQL database for storing users and transactions
+- QR code generation for OTP setup
+- Secure session management with Flask
 
 ---
+
+## 🔒 Security and Cryptography
+
+- **bcrypt** — secure password hashing with salt to protect against brute-force attacks  
+- **AES** — symmetric encryption for securely storing OTP secrets  
+- **RSA** — digital signatures to verify the authenticity of transactions  
+- **TOTP (Time-based One-Time Passwords)** — implemented using PyOTP for two-factor authentication  
+- **Google reCAPTCHA** — protects against automated bots and abuse  
+- **Logging** — all sensitive actions are recorded in the `transactions.log` file for audit purposes  
+- **PostgreSQL** — used as a robust and secure relational database for storing all user and transaction data
+
+---
+
 
 ## 📁 Project Structure
 
 ```
 BankOTP/
-├── app.py               # Flask app logic
-├── main.py              # Entry point
-├── templates/           # HTML templates
-├── static/              # CSS styles
-├── utils/               # Cryptography and helper utilities
-├── users.json           # User database (JSON)
-├── transactions.json    # Transactions database
-├── transactions.log     # Logging file
-├── private_key.pem      # RSA private key
-├── public_key.pem       # RSA public key
-├── secret.key           # OTP encryption key
-└── README.md            # Project description
+├── app.py                  # Main Flask application logic + PostgreSQL database
+├── main.py                 # Entry point to start the app
+├── templates/              # HTML templates
+├── static/                 # CSS and assets
+├── utils/
+│   ├── crypto_utils.py     # AES encryption
+    └── signature_utils.py  # RSA signatures
+│   └── helpers.py          # Helper functions (e.g., normalization, validation)
+├── secret.key              # AES encryption key for OTP
+├── private_key.pem         # RSA private key for digital signatures
+├── public_key.pem          # RSA public key for signature verification
+├── transactions.log        # Transaction operation logs
+└── README.md               # Project description and documentation
 ```
 
 ---
@@ -47,7 +61,7 @@ cd BankOTP
 python -m venv venv
 source venv/bin/activate      # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
-python main.py
+python app.py
 ```
 
 ---
@@ -72,28 +86,66 @@ RECAPTCHA_SECRET_KEY = 'YOUR_SECRET_KEY'
 
 ## 🔒 Security Practices
 
-- Passwords are hashed with SHA-256 (or better)
-- OTP is time-based (TOTP using PyOTP)
+- 🔑 Bcrypt Password Hashing
+- Passwords are hashed using the bcrypt algorithm, which provides strong protection against brute-force attacks and rainbow tables due to its adaptive nature and built-in salt generation.
+- 🔐 AES Encryption for OTP Secrets
+- User-specific OTP secrets are encrypted using AES (symmetric encryption) before being stored in the PostgreSQL database. This ensures the secrets cannot be read even if the database is compromised.
 - Google reCAPTCHA prevents automated form submissions
 - Transactions and logins are logged for traceability
+- 🔐 RSA Digital Signatures
+- Transactions are digitally signed using RSA private keys and verified using public keys. This guarantees the authenticity and integrity of signed messages or transactions.
 
 ---
 
 ## 📚 Technologies Used
 
 - Python 3 + Flask
-- HTML + Bootstrap
-- PyOTP, qrcode
+- PostgreSQL
+- PyOTP for TOTP OTP generation
+- Cryptography library for AES & RSA
+- Bcrypt for password hashing
+- qrcode for OTP setup
+- HTML/CSS (Bootstrap) for UI 
 - Google reCAPTCHA API
-- JSON storage
-- RSA & SHA256 (cryptography)
+- JavaScript
 
 ---
 
-## 👨‍🎓 Author
+## 📜 Project Goals
 
-> This project was developed as part of a diploma thesis:  
-> **"Using Cryptography in Electronic Payment Systems Based on Two-Factor Authentication"**
+**Goal:** To create a secure, user-friendly demo of an electronic payment system using modern cryptographic tools and strong two-factor authentication practices.
+
+**Tasks:**
+- Implement user identity verification with bcrypt and OTP
+- Encrypt and securely store sensitive data (like OTP secrets)
+- Digitally sign transactions to ensure data authenticity
+- Prevent unauthorized access using CAPTCHA and secure sessions
+- Log and trace all financial operations
+
+---
+
+## 📌 Compliance Context
+
+The project is inspired by industry security standards like **PCI DSS**, which sets requirements for securely handling and storing payment data. Key principles include:
+- Strong access control and authentication
+- Encrypted transmission and storage of sensitive data
+- Regular monitoring and testing
+
+---
+
+## 📘 Educational Context
+
+This application was developed as part of a diploma thesis:
+
+**"Using Cryptography in Electronic Payment Systems Based on Two-Factor Authentication"**
+
+It showcases the integration of modern cryptographic techniques into a banking system simulation, and can be used both for educational and demonstrative purposes.
+
+---
+
+## 👨‍💻 Author
+
+> Developed as a bachelor's graduation project by a student specializing in Cybersecurity at the Faculty of IT.
 
 ---
 

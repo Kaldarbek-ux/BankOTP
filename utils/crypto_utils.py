@@ -40,3 +40,5 @@ def decrypt_data(token):
 # Проверка пароля при входе
 def check_password(password, hashed):
     return bcrypt.checkpw(password.encode(), hashed.encode())
+
+
